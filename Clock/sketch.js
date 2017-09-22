@@ -31,7 +31,7 @@ function draw() {
     rotate(angle);
     strokeWeight(0.8);
     stroke(0, 0, 255);
-    text(mn, 70, 5);
+    text(hr, 70, 5);
     pop();
 
     // minute

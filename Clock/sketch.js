@@ -5,7 +5,7 @@ function setup() {
 
 function draw() {
     background(0);
-    translate(200,200)
+    translate(200, 200)
     rotate(-90)
 
     // hour, minute and second
@@ -14,35 +14,61 @@ function draw() {
     let sc = second();
 
     strokeWeight(8);
-    stroke(255,100,150);
     noFill();
 
-    let angle  = map(sc,0,60,0,360);
-    arc(0,0,300,300,0,angle);
+    // hour
+    boldness = map(hr, 0, 60, 0, 255);
+    stroke(150, 150, boldness)
+    angle = map(hr % 12, 0, 12, 0, 360);
+    arc(0, 0, 260, 260, 0, angle);
 
     push();
-    stroke(255);
     rotate(angle);
-    line(0,0,120,0);
+    line(0, 0, 65, 0);
     pop();
-
-    stroke(150,100,255)
-    angle  = map(mn,0,60,0,360);
-    arc(0,0,280,280,0,angle);
 
     push();
-    stroke(0,255,0);
     rotate(angle);
-    line(0,0,100,0);
+    strokeWeight(0.8);
+    stroke(0, 0, 255);
+    text(mn, 70, 5);
     pop();
 
-    stroke(100,255,150)
-    angle  = map(hr%12,0,12,0,360);
-    arc(0,0,260,260,0,angle);
+    // minute
+    boldness = map(mn, 0, 60, 0, 255);
+    stroke(boldness, 100, 100)
+    angle = map(mn, 0, 60, 0, 360);
+    arc(0, 0, 280, 280, 0, angle);
 
     push();
-    stroke(0,0,255);
     rotate(angle);
-    line(0,0,70,0);
+    line(0, 0, 90, 0);
     pop();
+
+    push();
+    rotate(angle);
+    strokeWeight(0.8);
+    stroke(0, 255, 0);
+    text(mn, 95, 5);
+    pop();
+
+    // second
+    boldness = map(sc, 0, 60, 0, 255);
+    stroke(50, 50, boldness);
+    angle = map(sc, 0, 60, 0, 360);
+    arc(0, 0, 300, 300, 0, angle);
+
+    push();
+    rotate(angle);
+    line(0, 0, 105, 0);
+    pop();
+
+    push();
+    rotate(angle);
+    strokeWeight(0.8);
+    stroke(255,0,0);
+    text(sc, 110, 5);
+    pop();
+
+
 }

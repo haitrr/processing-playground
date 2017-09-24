@@ -10,7 +10,13 @@ function Paddle(width, height, x, y) {
     this.position = new Point(x, y);
 
     // color
-    this.colour = Configuration.paddleColour;
+    this.colour = Configuration.paddle.paddleColour;
+    
+    // move function
+    this.move = function(speed){
+        this.position.x+=speed;
+    }
+
 
     // draw function
     this.draw = function () {
@@ -21,4 +27,11 @@ function Paddle(width, height, x, y) {
             this.width,
             this.height);
     };
+
+    //update function
+    this.update = function(){
+        if (keyIsDown(65)){
+
+        }
+    }
 }

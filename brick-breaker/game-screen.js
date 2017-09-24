@@ -8,22 +8,22 @@ function GameScreen(width, height) {
     createCanvas(this.width, this.height);
 
     // background color
-    background(Configuration.gameScreenBackgroundColour);
+    background(Configuration.screen.gameScreenBackgroundColour);
 
     // blocks
     this.blocks = {};
 
     // the paddle
     this.paddle = new Paddle(
-        Configuration.paddleWidth,
-        Configuration.paddleHeight,
-        Configuration.paddleInitialPositionX,
-        Configuration.paddleInitialPositionY);
+        Configuration.paddle.paddleWidth,
+        Configuration.paddle.paddleHeight,
+        Configuration.paddle.paddleInitialPositionX,
+        Configuration.paddle.paddleInitialPositionY);
 
     // the ball
-    this.ball = new Ball(Configuration.ballRadius,
-        Configuration.ballInitialPositionX,
-        Configuration.ballInitialPositionY);
+    this.ball = new Ball(Configuration.ball.ballRadius,
+        Configuration.ball.ballInitialPositionX,
+        Configuration.ball.ballInitialPositionY);
 
     // draw function
     this.draw = function () {
@@ -33,7 +33,11 @@ function GameScreen(width, height) {
 
     // update function
     this.update = function () {
-
+        this.paddle.update();
+        this.ball.update();
+        for(block in this.blocks){
+            block.update();
+        }
     }
 
 

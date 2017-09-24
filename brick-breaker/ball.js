@@ -4,7 +4,7 @@ function Ball(radius,x,y){
     this.radius = radius;
 
     // color
-    this.colour = Configuration.ballColour;
+    this.colour = Configuration.ball.ballColour;
 
     // this.pos
     this.position = new Point(x,y);
@@ -18,6 +18,11 @@ function Ball(radius,x,y){
             this.position.y,
             this.radius,
             this.radius);
+    }
+
+    // update function
+    this.update = function(){
+        //todo: implement
     }
 
 }

@@ -23,4 +23,8 @@ function Block(width, height, x, y) {
             this.height);
     }
 
+    // update function
+    this.update = function(){
+        //todo: implement
+    }
 }

@@ -1,15 +1,33 @@
 // configurations of the game
 var Configuration = new function () {
-    this.screenWidth = 600;
-    this.screenHeight = 600;
-    this.paddleWidth = Math.floor(this.screenWidth / 5);
-    this.paddleHeight = Math.floor(this.screenHeight / 50);
-    this.paddleInitialPositionX = Math.floor(this.screenWidth / 2);
-    this.paddleInitialPositionY = Math.floor(this.screenHeight * 0.9);
-    this.ballRadius = Math.floor((this.screenWidth + this.screenHeight) / 100);
-    this.ballInitialPositionX = Math.floor(this.screenWidth / 2);
-    this.ballInitialPositionY = Math.floor(this.screenHeight / 2);
-    this.ballColour = "orange";
-    this.gameScreenBackgroundColour = "yellow";
-    this.paddleColour = "blue";
+    // screen
+    this.screen = new function () {
+        this.screenWidth = 600;
+        this.screenHeight = 600;
+        this.gameScreenBackgroundColour = "yellow";
+    }
+
+    // paddle
+    this.paddle = new function (screen) {
+        this.paddleWidth = Math.floor(screen.screenWidth / 5);
+        this.paddleHeight = Math.floor(screen.screenHeight / 50);
+        this.paddleInitialPositionX = Math.floor(screen.screenWidth / 2);
+        this.paddleInitialPositionY = Math.floor(screen.screenHeight * 0.9);
+        this.paddleColour = "blue";
+        this.paddleSpeed = 10;
+    }(this.screen);
+
+    //ball
+    this.ball = new function (screen) {
+        this.ballRadius = Math.floor((screen.screenWidth + screen.screenHeight) / 100);
+        this.ballInitialPositionX = Math.floor(screen.screenWidth / 2);
+        this.ballInitialPositionY = Math.floor(screen.screenHeight / 2);
+        this.ballColour = "orange";
+    }(this.screen);
+
+    //block
+    this.block = new function(screen){
+        this.blockWidth = Math.floor((screen.screenWidth + screen.screenHeight) / 75);
+        this.blockHeight = Math.floor((screen.screenWidth + screen.screenHeight) / 75);
+    }(this.screen);
 }

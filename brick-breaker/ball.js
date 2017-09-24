@@ -4,7 +4,7 @@ function Ball(radius,x,y){
     this.radius = radius;
 
     // color
-    this.colour = 136;
+    this.colour = Configuration.ballColour;
 
     // this.pos
     this.position = new Point(x,y);
@@ -12,7 +12,12 @@ function Ball(radius,x,y){
     // draw function
     this.draw = function (){
         stroke(this.colour);
-        ellipse(this.position.x,this.position.y,this.radius,this.radius);
+        fill(this.colour);
+        ellipse(
+            this.position.x,
+            this.position.y,
+            this.radius,
+            this.radius);
     }
 
 }

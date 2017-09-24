@@ -1,11 +1,11 @@
-function Game(width,height){
-
+function Game(width, height) {
     // the game screen
-    this.screen = new GameScreen(600,600);
+    this.screen = new GameScreen(Configuration.screenWidth,
+        Configuration.screenHeight);
 
 
     // draw function
-    this.draw = function(){
+    this.draw = function () {
         this.screen.draw();
     }
 }

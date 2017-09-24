@@ -1,5 +1,5 @@
 // the paddle
-function Paddle(width,height,x,y){
+function Paddle(width, height, x, y) {
     // width
     this.width = width;
 
@@ -7,14 +7,18 @@ function Paddle(width,height,x,y){
     this.height = height;
 
     // position
-    this.position = new Point(x,y);
+    this.position = new Point(x, y);
 
     // color
-    this.colour = 255;
+    this.colour = Configuration.paddleColour;
 
     // draw function
-    this.draw = function(){
+    this.draw = function () {
         stroke(this.colour);
-        rect(this.position.x,this.position.y,this.width,this.height);
+        fill(this.colour);
+        rect(this.position.x,
+            this.position.y,
+            this.width,
+            this.height);
     };
 }

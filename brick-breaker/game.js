@@ -9,6 +9,7 @@ function Game(width, height) {
         this.screen.draw();
     }
 
+    // update function
     this.update = function(){
         this.screen.update();
     }

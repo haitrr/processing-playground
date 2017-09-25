@@ -23,6 +23,8 @@ var Configuration = new function () {
         this.ballInitialPositionX = Math.floor(screen.screenWidth / 2);
         this.ballInitialPositionY = Math.floor(screen.screenHeight / 2);
         this.ballColour = "orange";
+        this.initialSpeed = Math.floor(screen.screenWidth / 50);
+        this.initialDirection = 90;
     }(this.screen);
 
     //block

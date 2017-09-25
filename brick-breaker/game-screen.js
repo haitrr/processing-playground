@@ -27,6 +27,7 @@ function GameScreen(width, height) {
 
     // draw function
     this.draw = function () {
+        background(Configuration.screen.gameScreenBackgroundColour);
         this.paddle.draw();
         this.ball.draw();
     };

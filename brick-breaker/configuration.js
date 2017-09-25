@@ -5,6 +5,7 @@ var Configuration = new function () {
         this.screenWidth = 600;
         this.screenHeight = 600;
         this.gameScreenBackgroundColour = "yellow";
+        this.frameRate = 60;
     }
 
     // paddle

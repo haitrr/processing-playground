@@ -9,6 +9,12 @@ function Ball(radius,x,y){
     // this.pos
     this.position = new Point(x,y);
     
+    // speed
+    this.speed = Configuration.ball.initialSpeed;
+
+    // direction
+    this.direction = Configuration.ball.initialDirection;
+
     // draw function
     this.draw = function (){
         stroke(this.colour);
@@ -22,7 +28,12 @@ function Ball(radius,x,y){
 
     // update function
     this.update = function(){
-        //todo: implement
+        sX = this.speed*cos(this.direction);
+        sY = this.speed*sin(this.direction);
+        this.position.x+=sX;
+        this.position.y+=sY;
+
+        //todo: implement collision
     }
 
 }

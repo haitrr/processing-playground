@@ -31,7 +31,10 @@ function Paddle(width, height, x, y) {
     //update function
     this.update = function(){
         if (keyIsDown(65)){
-
+            this.move(-Configuration.paddle.paddleSpeed);
+        }
+        else if (keyIsDown(68)){
+            this.move(Configuration.paddle.paddleSpeed);
         }
     }
 }

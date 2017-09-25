@@ -32,6 +32,11 @@ function GameScreen(width, height) {
         this.ball.draw();
     };
 
+        // handle collision
+    this.collisionHandle = function(){
+        //todo
+    }
+
     // update function
     this.update = function () {
         this.paddle.update();

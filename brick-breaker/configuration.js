@@ -14,7 +14,7 @@ var Configuration = new function () {
         this.paddleInitialPositionX = Math.floor(screen.screenWidth / 2);
         this.paddleInitialPositionY = Math.floor(screen.screenHeight * 0.9);
         this.paddleColour = "blue";
-        this.paddleSpeed = 10;
+        this.paddleSpeed = 5;
     }(this.screen);
 
     //ball
@@ -23,7 +23,7 @@ var Configuration = new function () {
         this.ballInitialPositionX = Math.floor(screen.screenWidth / 2);
         this.ballInitialPositionY = Math.floor(screen.screenHeight / 2);
         this.ballColour = "orange";
-        this.initialSpeed = Math.floor(screen.screenWidth / 50);
+        this.initialSpeed = 1;
         this.initialDirection = 90;
     }(this.screen);
 

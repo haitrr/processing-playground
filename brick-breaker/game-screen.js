@@ -32,9 +32,38 @@ function GameScreen(width, height) {
         this.ball.draw();
     };
 
+
         // handle collision
     this.collisionHandle = function(){
-        //todo
+        // paddle right
+        if(this.paddle.position.x + this.paddle.width > this.width-1){
+            this.paddle.position.x = this.width -this.paddle.width - 1;
+        }
+        
+        // paddle left
+        if(this.paddle.position.x<0){
+            this.paddle.position.x = 0;
+        }
+
+        // ball paddle
+        if( (this.ball.position.x + this.ball.radius >= this.paddle.position.x
+        && this.ball.position.x - this.ball.radius <= this.paddle.position.x + this.paddle.width)
+        && 
+        (this.ball.position.y + this.ball.radius >= this.paddle.position.y
+        && this.ball.position.y - this.ball.radius <= this.paddle.position.y + this.paddle.height)
+        ){
+            this.ball.direction.y*=-1;
+        }
+
+        // ball wall right  and left
+        if (this.ball.position.x + this.ball.radius > this.width || this.ball.position.x - this.ball.radius < 0){
+            this.ball.direction.x *=-1;
+        }
+
+        // ball wall top and bottom
+        if (this.ball.position.y - this.ball.radius < 0 || this.ball.position.y + this.ball.radius > this.height - 1){
+            this.ball.direction.y *=-1;
+        }
     }
 
     // update function
@@ -44,6 +73,7 @@ function GameScreen(width, height) {
         for(block in this.blocks){
             block.update();
         }
+        this.collisionHandle();
     }
 
 

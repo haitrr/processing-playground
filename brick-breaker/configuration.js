@@ -24,13 +24,14 @@ var Configuration = new function () {
         this.ballInitialPositionX = Math.floor(screen.screenWidth / 2);
         this.ballInitialPositionY = Math.floor(screen.screenHeight / 2);
         this.ballColour = "orange";
-        this.initialSpeed = 1;
-        this.initialDirection = 90;
+        this.initialSpeed = 2;
+        this.initialDirection = new Vector(0.5,0.8);
     }(this.screen);
 
     //block
     this.block = new function(screen){
         this.blockWidth = Math.floor((screen.screenWidth + screen.screenHeight) / 75);
         this.blockHeight = Math.floor((screen.screenWidth + screen.screenHeight) / 75);
+        
     }(this.screen);
 }

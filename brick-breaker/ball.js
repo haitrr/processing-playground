@@ -22,18 +22,17 @@ function Ball(radius,x,y){
         ellipse(
             this.position.x,
             this.position.y,
-            this.radius,
-            this.radius);
+            this.radius*2,
+            this.radius*2);
     }
 
     // update function
     this.update = function(){
-        sX = this.speed*cos(this.direction);
-        sY = this.speed*sin(this.direction);
+        sX = this.speed*this.direction.x
+        sY = this.speed*this.direction.y;
         this.position.x+=sX;
         this.position.y+=sY;
 
         //todo: implement collision
     }
-
 }

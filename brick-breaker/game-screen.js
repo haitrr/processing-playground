@@ -11,7 +11,8 @@ function GameScreen(width, height) {
     background(Configuration.screen.gameScreenBackgroundColour);
 
     // blocks
-    this.blocks = {};
+    this.blocks =[
+    ];
 
     // the paddle
     this.paddle = new Paddle(
@@ -30,6 +31,9 @@ function GameScreen(width, height) {
         background(Configuration.screen.gameScreenBackgroundColour);
         this.paddle.draw();
         this.ball.draw();
+        this.blocks.forEach(function(block) {
+            block.draw();
+        }, this);
     };
 
 
@@ -70,9 +74,9 @@ function GameScreen(width, height) {
     this.update = function () {
         this.paddle.update();
         this.ball.update();
-        for(block in this.blocks){
+        this.blocks.forEach(function(block) {
             block.update();
-        }
+        }, this);
         this.collisionHandle();
     }
 

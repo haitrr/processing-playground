@@ -1,16 +1,17 @@
-function Game(width, height) {
-    // the game screen
-    this.screen = new GameScreen(Configuration.screen.screenWidth,
-        Configuration.screen.screenHeight);
+class Game {
+    constructor(width, height) {
+        // the game screen
+        this.screen = new GameScreen(Configuration.screen.screenWidth,
+            Configuration.screen.screenHeight);
 
-
+    }
     // draw function
-    this.draw = function () {
+    draw() {
         this.screen.draw();
     }
 
     // update function
-    this.update = function(){
+    update() {
         this.screen.update();
     }
 }

@@ -1,25 +1,26 @@
 // the paddle
-function Paddle(width, height, x, y) {
-    // width
-    this.width = width;
+class Paddle {
+    constructor(width, height, x, y) {
+        // width
+        this.width = width;
 
-    // height
-    this.height = height;
+        // height
+        this.height = height;
 
-    // position
-    this.position = new Point(x, y);
+        // position
+        this.position = new Point(x, y);
 
-    // color
-    this.colour = Configuration.paddle.paddleColour;
-    
+        // color
+        this.colour = Configuration.paddle.paddleColour;
+    }
     // move function
-    this.move = function(speed){
-        this.position.x+=speed;
+    move(speed) {
+        this.position.x += speed;
     }
 
 
     // draw function
-    this.draw = function () {
+    draw() {
         stroke(this.colour);
         fill(this.colour);
         rect(this.position.x,
@@ -29,11 +30,10 @@ function Paddle(width, height, x, y) {
     };
 
     //update function
-    this.update = function(){
-        if (keyIsDown(65)){
+    update() {
+        if (keyIsDown(65)) {
             this.move(-Configuration.paddle.paddleSpeed);
-        }
-        else if (keyIsDown(68)){
+        } else if (keyIsDown(68)) {
             this.move(Configuration.paddle.paddleSpeed);
         }
     }

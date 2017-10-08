@@ -25,6 +25,14 @@ class Block {
             this.position.y,
             this.width,
             this.height);
+        stroke(255-this.colour);
+        textAlign(CENTER,CENTER);
+        text(this.durability,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        )
     }
 
     // update function

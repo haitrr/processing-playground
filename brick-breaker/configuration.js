@@ -30,8 +30,9 @@ var Configuration = new function () {
 
     //block
     this.block = new function(screen){
-        this.blockWidth = Math.floor((screen.screenWidth + screen.screenHeight) / 75);
-        this.blockHeight = Math.floor((screen.screenWidth + screen.screenHeight) / 75);
-        
+        this.blockWidth = Math.floor((screen.screenWidth + screen.screenHeight) / 50);
+        this.blockHeight = Math.floor((screen.screenWidth + screen.screenHeight) / 50);
+        this.initNumberOfBlock = 20;
+        this.initDurability = 1;
     }(this.screen);
 }

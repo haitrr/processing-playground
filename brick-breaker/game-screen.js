@@ -10,15 +10,29 @@ class GameScreen {
         // background color
         background(Configuration.screen.gameScreenBackgroundColour);
 
-        // blocks
-        this.blocks = [];
-
         // the paddle
         this.paddle = new Paddle(
             Configuration.paddle.paddleWidth,
             Configuration.paddle.paddleHeight,
             Configuration.paddle.paddleInitialPositionX,
             Configuration.paddle.paddleInitialPositionY);
+
+
+        // blocks
+        this.blocks = [];
+        for (var i = 0; i < Configuration.block.initNumberOfBlock; i++) {
+            while (true) {
+                var newBlock = new Block(Configuration.block.blockWidth,
+                    Configuration.block.blockHeight,
+                    Math.floor(random(0, this.width - Configuration.block.blockWidth)),
+                    Math.floor(random(0, this.paddle.position.y - Configuration.block.blockHeight * 2)),
+                    Configuration.block.initDurability);
+                if (Util.checkIfBlocksOverlap(newBlock, this.blocks) == false) {
+                    this.blocks.push(newBlock);
+                    break;
+                }
+            }
+        }
 
         // the ball
         this.ball = new Ball(Configuration.ball.ballRadius,
@@ -66,6 +80,8 @@ class GameScreen {
         if (this.ball.position.y - this.ball.radius < 0 || this.ball.position.y + this.ball.radius > this.height - 1) {
             this.ball.direction.y *= -1;
         }
+
+        // 
     }
 
     // update function

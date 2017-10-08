@@ -1,7 +1,7 @@
 // the blocks
 
 class Block {
-    constructor(width, height, x, y) {
+    constructor(width, height, x, y,durability) {
         // width
         this.width = width;
 
@@ -14,10 +14,13 @@ class Block {
         // color
         // random
         this.colour = Math.floor(Math.random() * 255 + 1);
+
+        // durability
+        this.durability = durability;
     }
     // draw function
     draw() {
-        stroke(this.colour);
+        fill(this.colour);
         rect(this.position.x,
             this.position.y,
             this.width,

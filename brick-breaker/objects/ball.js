@@ -1,14 +1,10 @@
 // the ball
-class Ball {
-    constructor(radius, x, y) {
-        // radius
-        this.radius = radius;
+class Ball extends CircleObject {
+    constructor(position,radius) {
 
+        super(position,radius);
         // color
         this.colour = Configuration.ball.ballColour;
-
-        // this.pos
-        this.position = new Point(x, y);
 
         // speed
         this.speed = Configuration.ball.initialSpeed;
@@ -20,13 +16,9 @@ class Ball {
     draw() {
         stroke(this.colour);
         fill(this.colour);
-        ellipse(
-            this.position.x,
-            this.position.y,
-            this.radius * 2,
-            this.radius * 2);
+        super.draw()
     }
-
+    
     // update function
     update() {
         var sX = this.speed * this.direction.x

@@ -1,14 +1,7 @@
 // the paddle
-class Paddle {
-    constructor(width, height, x, y) {
-        // width
-        this.width = width;
-
-        // height
-        this.height = height;
-
-        // position
-        this.position = new Point(x, y);
+class Paddle extends RegtangleObject{
+    constructor(position,size) {
+        super(position,size);
 
         // color
         this.colour = Configuration.paddle.paddleColour;
@@ -23,10 +16,7 @@ class Paddle {
     draw() {
         stroke(this.colour);
         fill(this.colour);
-        rect(this.position.x,
-            this.position.y,
-            this.width,
-            this.height);
+        super.draw();
     };
 
     //update function

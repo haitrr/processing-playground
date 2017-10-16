@@ -1,8 +1,7 @@
 class RegtangleObject extends GameObject {
-    constructor(position, width, height) {
+    constructor(position, size) {
         super(position);
-        this.width = width;
-        this.height = height;
+        this.size = size;
     }
 
     get left() {
@@ -10,11 +9,11 @@ class RegtangleObject extends GameObject {
     }
 
     get right() {
-        return this.position.x + this.width;
+        return this.position.x + this.size.width;
     }
 
     get bottom() {
-        return this.position.y + this.height;
+        return this.position.y + this.size.height;
     }
 
     get top(){
@@ -24,7 +23,7 @@ class RegtangleObject extends GameObject {
     draw(){
         rect(this.position.x,
             this.position.y,
-            this.width,
-            this.height);
+            this.size.width,
+            this.size.height);
     }
 }

@@ -12,10 +12,9 @@ class GameScreen {
 
         // the paddle
         this.paddle = new Paddle(
-            Configuration.paddle.paddleWidth,
-            Configuration.paddle.paddleHeight,
-            Configuration.paddle.paddleInitialPositionX,
-            Configuration.paddle.paddleInitialPositionY);
+            new Point(Configuration.paddle.paddleInitialPositionX,
+                Configuration.paddle.paddleInitialPositionY), new Size(Configuration.paddle.paddleWidth,
+                    Configuration.paddle.paddleHeight));
 
 
         // blocks
@@ -35,9 +34,9 @@ class GameScreen {
         }
 
         // the ball
-        this.ball = new Ball(Configuration.ball.ballRadius,
-            Configuration.ball.ballInitialPositionX,
-            Configuration.ball.ballInitialPositionY);
+        this.ball = new Ball(
+            new Point(Configuration.ball.ballInitialPositionX,
+            Configuration.ball.ballInitialPositionY),Configuration.ball.ballRadius);
     }
     // draw function
     draw() {
@@ -53,35 +52,35 @@ class GameScreen {
     // handle collision
     collisionHandle() {
         // paddle right
-        if (this.paddle.position.x + this.paddle.width > this.width - 1) {
-            this.paddle.position.x = this.width - this.paddle.width - 1;
+        if (this.paddle.right> this.width - 1) {
+            this.paddle.right = this.width - 1;
         }
 
         // paddle left
-        if (this.paddle.position.x < 0) {
-            this.paddle.position.x = 0;
+        if (this.paddle.left < 0) {
+            this.paddle.left = 0;
         }
 
         // ball paddle
-        if ((this.ball.position.x + this.ball.radius >= this.paddle.position.x &&
-                this.ball.position.x - this.ball.radius <= this.paddle.position.x + this.paddle.width) &&
-            (this.ball.position.y + this.ball.radius >= this.paddle.position.y &&
-                this.ball.position.y - this.ball.radius <= this.paddle.position.y + this.paddle.height)
+        if (this.ball.right >= this.paddle.left &&
+            this.ball.left <= this.paddle.right &&  
+            this.ball.bottom >= this.paddle.top &&
+                this.ball.top <= this.paddle.bottom
         ) {
             this.ball.direction.y *= -1;
         }
 
         // ball wall right  and left
-        if (this.ball.position.x + this.ball.radius > this.width || this.ball.position.x - this.ball.radius < 0) {
+        if (this.ball.right > this.width || this.ball.left < 0) {
             this.ball.direction.x *= -1;
         }
 
         // ball wall top and bottom
-        if (this.ball.position.y - this.ball.radius < 0 || this.ball.position.y + this.ball.radius > this.height - 1) {
+        if (this.ball.top < 0 || this.ball.bottom > this.height - 1) {
             this.ball.direction.y *= -1;
         }
 
-        // 
+        // ball block
     }
 
     // update function

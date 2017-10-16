@@ -8,16 +8,31 @@ class CircleObject extends GameObject {
         return this.position.x - this.radius;
     }
 
+    set left(value){
+        this.position.x = value + this.radius;
+    }
+
     get right() {
         return this.position.x + this.radius;
+    }
+    set right(value){
+        this.position.x = value - this.radius;
     }
 
     get top() {
         return this.position.y - this.radius;
     }
 
+    set top(value){
+        this.position.y = value + this.radius;
+    }
+
     get bottom() {
         return this.position.y + this.radius;
+    }
+
+    set bottom(value) {
+        this.position.y = value - this.radius;
     }
 
     draw() {

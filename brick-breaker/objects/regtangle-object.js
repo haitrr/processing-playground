@@ -1,6 +1,6 @@
 class RegtangleObject extends GameObject {
-    constructor(x, y, width, height) {
-        super(x, y);
+    constructor(position, width, height) {
+        super(position);
         this.width = width;
         this.height = height;
     }

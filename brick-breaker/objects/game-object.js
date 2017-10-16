@@ -1,7 +1,7 @@
 class GameObject {
 
-    constructor(x, y) {
-        this.position = new Point(x, y);
+    constructor(position) {
+        this.position = position;
     }
 
     get left() {

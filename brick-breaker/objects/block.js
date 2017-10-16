@@ -1,15 +1,9 @@
 // the blocks
 
-class Block {
-    constructor(width, height, x, y,durability) {
-        // width
-        this.width = width;
+class Block extends RegtangleObject{
+    constructor(position,size,durability) {
 
-        //height
-        this.height = height;
-
-        // position
-        this.position = new Point(x, y);
+        super(position,size);
 
         // color
         // random
@@ -21,17 +15,14 @@ class Block {
     // draw function
     draw() {
         fill(this.colour);
-        rect(this.position.x,
-            this.position.y,
-            this.width,
-            this.height);
+        super.draw();
         stroke(255-this.colour);
         textAlign(CENTER,CENTER);
         text(this.durability,
             this.position.x,
             this.position.y,
-            this.width,
-            this.height
+            this.size.width,
+            this.size.height
         )
     }
 

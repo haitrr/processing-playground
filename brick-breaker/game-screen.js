@@ -86,27 +86,29 @@ class GameScreen {
                 && this.ball.left < block.right
                 && this.ball.bottom > block.top
                 && this.ball.top <= block.bottom) {
-                var dl = this.ball.right - block.left
-                var dr = block.right - this.ball.left;
-                var dt = this.ball.bottom - block.top;
-                var db = block.bottom - this.ball.top;
+                var distanceLeft = this.ball.right - block.left
+                var distanceRight = block.right - this.ball.left;
+                var distanceTop = this.ball.bottom - block.top;
+                var distanceBottom = block.bottom - this.ball.top;
                 var count = 0;
-                print(dl,dr,dt,db,block.size.width);
-                if (dl >= 0 && dl < block.size.width) {
-                    this.ball.right = block.left - 2;
+                if (distanceLeft >= 0 && distanceLeft <= this.ball.direction.x * 2) {
+                    this.ball.right = block.left - 1;
                     this.ball.direction.x *= -1;
                 }
-                if (dr >= 0 && dr < block.size.width) {
-                    this.ball.left = block.right + 2;
+                else if (distanceRight >= 0 && distanceRight <= -this.ball.direction.x * 2) {
+                    this.ball.left = block.right + 1;
                     this.ball.direction.x *= -1;
                 }
-                if (dt >= 0 && dt < block.size.height) {
-                    this.ball.bottom = block.top - 2;
+                else if (distanceTop >= 0 && distanceTop <= this.ball.direction.y * 2) {
+                    this.ball.bottom = block.top - 1;
                     this.ball.direction.y *= -1;
                 }
-                if (db >= 0 && db < block.size.height) {
-                    this.ball.top = block.bottom + 2;
+                else if (distanceBottom >= 0 && distanceBottom <= -this.ball.direction.y * 2) {
+                    this.ball.top = block.bottom + 1;
                     this.ball.direction.y *= -1;
+                }
+                else {
+                    print(distanceLeft, distanceRight, this.ball.direction.x, distanceTop, distanceBottom, this.ball.direction.y);
                 }
             }
         }, this);

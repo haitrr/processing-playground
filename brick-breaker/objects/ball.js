@@ -11,6 +11,9 @@ class Ball extends CircleObject {
 
         // direction
         this.direction = Configuration.ball.initialDirection;
+
+        // damage
+        this.damage = Configuration.ball.initialDamage;
     }
     // draw function
     draw() {

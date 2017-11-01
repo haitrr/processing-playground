@@ -67,6 +67,12 @@ class GameScreen {
             this.ball.bottom >= this.paddle.top &&
             this.ball.top <= this.paddle.bottom
         ) {
+            if (this.ball.direction.y > 0) {
+                this.ball.bottom = this.paddle.top - 1;
+            }
+            else {
+                this.ball.top = this.paddle.bottom + 1;
+            }
             this.ball.direction.y *= -1;
         }
 

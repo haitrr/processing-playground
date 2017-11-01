@@ -26,6 +26,9 @@ var Configuration = new function () {
         this.ballColour = "orange";
         this.initialSpeed = 2;
         this.initialDirection = new Vector(0.5,0.8);
+
+        // Initial damage
+        this.initialDamage = 1;
     }(this.screen);
 
     //block

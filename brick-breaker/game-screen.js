@@ -87,7 +87,8 @@ class GameScreen {
         }
 
         // ball block
-        this.blocks.forEach(function (block) {
+        for(var i = 0;i < this.blocks.length;i++){
+            var block = this.blocks[i];
             if (this.ball.right > block.left
                 && this.ball.left < block.right
                 && this.ball.bottom > block.top
@@ -116,8 +117,16 @@ class GameScreen {
                 else {
                     print(distanceLeft, distanceRight, this.ball.direction.x, distanceTop, distanceBottom, this.ball.direction.y);
                 }
+
+                // smash the block
+                if(block.smash(this.ball.damage)){
+
+                    // if the block is broken 
+                    // remove it from the game
+                    this.blocks.splice(i,1);
+                }
             }
-        }, this);
+        };
     }
 
     // update function

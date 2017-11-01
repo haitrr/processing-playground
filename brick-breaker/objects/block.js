@@ -26,6 +26,17 @@ class Block extends RegtangleObject{
         )
     }
 
+    // When the ball collide with the block
+    // it will lose the durability base on damage of the ball
+    // and will broke when the durability < = 0
+    smash(damage) {
+        this.durability -= damage;
+        if (this.durability <= 0) {
+            return true;
+        }
+        return false;
+    }
+
     // update function
     update() {
         //todo: implement

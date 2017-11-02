@@ -1,5 +1,7 @@
 class GameScreen {
     constructor(width, height) {
+        // score
+        this.score = 0;
         // width, height
         this.width = width
         this.height = height
@@ -46,6 +48,13 @@ class GameScreen {
         this.blocks.forEach(function (block) {
             block.draw();
         }, this);
+        fill(244, 66, 66);
+        stroke(244, 66, 66);
+        text("Score : " + this.score,
+        Math.floor(this.width/2),
+        Math.floor(this.height/50),
+        Math.floor(this.width/10),
+        Math.floor(this.height/10));
     };
 
 
@@ -87,7 +96,7 @@ class GameScreen {
         }
 
         // ball block
-        for(var i = 0;i < this.blocks.length;i++){
+        for (var i = 0; i < this.blocks.length; i++) {
             var block = this.blocks[i];
             if (this.ball.right > block.left
                 && this.ball.left < block.right
@@ -118,12 +127,14 @@ class GameScreen {
                     print(distanceLeft, distanceRight, this.ball.direction.x, distanceTop, distanceBottom, this.ball.direction.y);
                 }
 
+                // increase score
+                this.score += 1;
                 // smash the block
-                if(block.smash(this.ball.damage)){
+                if (block.smash(this.ball.damage)) {
 
                     // if the block is broken 
                     // remove it from the game
-                    this.blocks.splice(i,1);
+                    this.blocks.splice(i, 1);
                 }
             }
         };

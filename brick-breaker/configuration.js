@@ -6,6 +6,13 @@ var Configuration = new function () {
         this.screenHeight = 600;
         this.gameScreenBackgroundColour = "yellow";
         this.frameRate = 60;
+        this.scoreLabel = new function (screen) {
+            this.colour = "red";
+            this.position = new Point(Math.floor(screen.width / 2),
+                Math.floor(screen.height / 50));
+            this.size = new Size(Math.floor(screen.width / 10),
+                Math.floor(screen.height / 10));
+        }(this);
     }
 
     // paddle
@@ -25,14 +32,14 @@ var Configuration = new function () {
         this.ballInitialPositionY = Math.floor(screen.screenHeight / 2);
         this.ballColour = "orange";
         this.initialSpeed = 2;
-        this.initialDirection = new Vector(0.5,0.8);
+        this.initialDirection = new Vector(0.5, 0.8);
 
         // Initial damage
         this.initialDamage = 1;
     }(this.screen);
 
     //block
-    this.block = new function(screen){
+    this.block = new function (screen) {
         this.blockWidth = Math.floor((screen.screenWidth + screen.screenHeight) / 50);
         this.blockHeight = Math.floor((screen.screenWidth + screen.screenHeight) / 50);
         this.initNumberOfBlock = 20;

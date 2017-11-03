@@ -8,10 +8,10 @@ var Configuration = new function () {
         this.frameRate = 60;
         this.scoreLabel = new function (screen) {
             this.colour = "red";
-            this.position = new Point(Math.floor(screen.width / 2),
-                Math.floor(screen.height / 50));
-            this.size = new Size(Math.floor(screen.width / 10),
-                Math.floor(screen.height / 10));
+            this.position = new Point(Math.floor(screen.screenWidth / 2),
+                Math.floor(screen.screenHeight / 50));
+            this.size = new Size(Math.floor(screen.screenWidth / 10),
+                Math.floor(screen.screenHeight / 10));
         }(this);
     }
 

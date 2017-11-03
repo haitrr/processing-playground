@@ -54,7 +54,7 @@ class GameScreen {
                     new Point(Math.floor(random(0, this.width - Configuration.block.blockWidth)),
                         Math.floor(random(0, this.paddle.position.y - Configuration.block.blockHeight * 2))), new Size(Configuration.block.blockWidth,
                             Configuration.block.blockHeight),
-                    Configuration.block.initDurability);
+                    Math.round(random(this.level,this.level*2)));
                 if (Util.checkIfBlocksOverlap(newBlock, this.blocks) == false) {
                     this.blocks.push(newBlock);
                     break;

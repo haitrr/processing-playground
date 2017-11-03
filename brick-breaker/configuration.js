@@ -28,7 +28,7 @@ var Configuration = new function () {
 
     //ball
     this.ball = new function (screen) {
-        this.ballRadius = Math.floor((screen.screenWidth + screen.screenHeight) / 100);
+        this.ballRadius = Math.floor((screen.screenWidth + screen.screenHeight) / 150);
         this.ballInitialPositionX = Math.floor(screen.screenWidth / 2);
         this.ballInitialPositionY = Math.floor(screen.screenHeight / 2);
         this.ballColour = "orange";

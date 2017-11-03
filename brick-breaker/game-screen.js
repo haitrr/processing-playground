@@ -48,13 +48,13 @@ class GameScreen {
         this.blocks.forEach(function (block) {
             block.draw();
         }, this);
-        fill(244, 66, 66);
-        stroke(244, 66, 66);
+        fill(Configuration.screen.scoreLabel.colour);
+        stroke(Configuration.screen.scoreLabel.colour);
         text("Score : " + this.score,
-        Math.floor(this.width/2),
-        Math.floor(this.height/50),
-        Math.floor(this.width/10),
-        Math.floor(this.height/10));
+            Configuration.screen.scoreLabel.position.x,
+            Configuration.screen.scoreLabel.position.y,
+            Configuration.screen.scoreLabel.size.width,
+            Configuration.screen.scoreLabel.size.height);
     };
 
 

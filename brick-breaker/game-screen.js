@@ -6,6 +6,8 @@ class GameScreen {
         this.width = width
         this.height = height
 
+        // level
+        this.level = Configuration.screen.inititalLevel;
         // create game canvas
         createCanvas(this.width, this.height);
 

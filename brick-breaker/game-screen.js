@@ -21,19 +21,7 @@ class GameScreen {
 
         // blocks
         this.blocks = [];
-        for (var i = 0; i < Configuration.block.initNumberOfBlock; i++) {
-            while (true) {
-                var newBlock = new Block(
-                    new Point(Math.floor(random(0, this.width - Configuration.block.blockWidth)),
-                        Math.floor(random(0, this.paddle.position.y - Configuration.block.blockHeight * 2))), new Size(Configuration.block.blockWidth,
-                            Configuration.block.blockHeight),
-                    Configuration.block.initDurability);
-                if (Util.checkIfBlocksOverlap(newBlock, this.blocks) == false) {
-                    this.blocks.push(newBlock);
-                    break;
-                }
-            }
-        }
+        this.createBlocks();
 
         // the ball
         this.ball = new Ball(
@@ -57,6 +45,21 @@ class GameScreen {
             Configuration.screen.scoreLabel.size.height);
     };
 
+    createBlocks() {
+        for (var i = 0; i < Configuration.block.initNumberOfBlock; i++) {
+            while (true) {
+                var newBlock = new Block(
+                    new Point(Math.floor(random(0, this.width - Configuration.block.blockWidth)),
+                        Math.floor(random(0, this.paddle.position.y - Configuration.block.blockHeight * 2))), new Size(Configuration.block.blockWidth,
+                            Configuration.block.blockHeight),
+                    Configuration.block.initDurability);
+                if (Util.checkIfBlocksOverlap(newBlock, this.blocks) == false) {
+                    this.blocks.push(newBlock);
+                    break;
+                }
+            }
+        }
+    }
 
     // handle collision
     collisionHandle() {

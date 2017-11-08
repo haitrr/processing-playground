@@ -1,8 +1,8 @@
 // the ball
 class Ball extends CircleObject {
-    constructor(position,radius) {
+    constructor(position, radius) {
 
-        super(position,radius);
+        super(position, radius);
         // color
         this.colour = Configuration.ball.ballColour;
 
@@ -21,14 +21,24 @@ class Ball extends CircleObject {
         fill(this.colour);
         super.draw()
     }
-    
+
+    get xSpeed() {
+        return this.speed * this.direction.x;
+    }
+
+    get ySpeed() {
+        return this.speed * this.direction.y;
+    }
+
+    // move
+    move() {
+        this.position.x += this.xSpeed;
+        this.position.y += this.ySpeed;
+    }
+
     // update function
     update() {
-        var sX = this.speed * this.direction.x
-        var sY = this.speed * this.direction.y;
-        this.position.x += sX;
-        this.position.y += sY;
-
+        this.move()
         //todo: implement collision
     }
 }

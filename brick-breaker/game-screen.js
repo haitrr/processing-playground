@@ -107,24 +107,32 @@ class GameScreen {
                 && this.ball.left < block.right
                 && this.ball.bottom > block.top
                 && this.ball.top <= block.bottom) {
+
+                // get the distances of intersect
+                // from 4 sides
                 var distanceLeft = this.ball.right - block.left
                 var distanceRight = block.right - this.ball.left;
                 var distanceTop = this.ball.bottom - block.top;
                 var distanceBottom = block.bottom - this.ball.top;
                 var count = 0;
-                if (distanceLeft >= 0 && distanceLeft <= this.ball.direction.x * 2) {
+
+                // find the real intersect sides
+                // base on the distance of the intersections
+                // if it is positive and not greater than the speed of the ball
+                
+                if (distanceLeft >= 0 && distanceLeft <= this.ball.xSpeed) {
                     this.ball.right = block.left - 1;
                     this.ball.direction.x *= -1;
                 }
-                else if (distanceRight >= 0 && distanceRight <= -this.ball.direction.x * 2) {
+                else if (distanceRight >= 0 && distanceRight <= -this.ball.xSpeed) {
                     this.ball.left = block.right + 1;
                     this.ball.direction.x *= -1;
                 }
-                else if (distanceTop >= 0 && distanceTop <= this.ball.direction.y * 2) {
+                else if (distanceTop >= 0 && distanceTop <= this.ball.ySpeed) {
                     this.ball.bottom = block.top - 1;
                     this.ball.direction.y *= -1;
                 }
-                else if (distanceBottom >= 0 && distanceBottom <= -this.ball.direction.y * 2) {
+                else if (distanceBottom >= 0 && distanceBottom <= -this.ball.ySpeed) {
                     this.ball.top = block.bottom + 1;
                     this.ball.direction.y *= -1;
                 }
@@ -143,6 +151,13 @@ class GameScreen {
                 }
             }
         };
+
+        // if all the blocks are broken, increase the level
+        // and create blocks
+        if(this.blocks.length == 0){
+            this.level += 1;
+            this.createBlocks();
+        }
     }
 
     // update function

@@ -76,6 +76,8 @@ class GameScreen {
         }
 
         // ball paddle
+        // Todo: Need to rework to make the ball moving direction
+        // change base on the momentum of the paddle at the collions time
         if (this.ball.right >= this.paddle.left &&
             this.ball.left <= this.paddle.right &&
             this.ball.bottom >= this.paddle.top &&

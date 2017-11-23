@@ -14,6 +14,7 @@ class Block extends RegtangleObject{
     }
     // draw function
     draw() {
+        // todo: Rework the block colors
         fill(this.colour);
         super.draw();
         stroke(255-this.colour);

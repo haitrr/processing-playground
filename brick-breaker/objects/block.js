@@ -14,9 +14,11 @@ class Block extends RegtangleObject{
     }
     // draw function
     draw() {
+        stroke(this.colour);
         fill(this.colour);
         super.draw();
-        stroke(255-this.colour);
+        stroke(255-this.colour[0],255-this.colour[1],255-this.colour[2]);
+        fill(255-this.colour[0],255-this.colour[1],255-this.colour[2]);
         textAlign(CENTER,CENTER);
         text(this.durability,
             this.position.x,

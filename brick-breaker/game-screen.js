@@ -6,20 +6,30 @@ class GameScreen {
         this.width = width
         this.height = height
 
-        // level
-        this.level = Configuration.screen.inititalLevel;
         // create game canvas
         createCanvas(this.width, this.height);
 
         // background color
         background(Configuration.screen.gameScreenBackgroundColour);
 
+        // init the game
+        this.initGame();
+
+    }
+
+    // Init the game contents
+    initGame() {
+
+        // playing ?
+        this.isPlaying = false;
         // the paddle
         this.paddle = new Paddle(
             new Point(Configuration.paddle.paddleInitialPositionX,
                 Configuration.paddle.paddleInitialPositionY), new Size(Configuration.paddle.paddleWidth,
-                    Configuration.paddle.paddleHeight));
+                Configuration.paddle.paddleHeight));
 
+        // level
+        this.level = Configuration.screen.inititalLevel;
 
         // blocks
         this.blocks = [];
@@ -29,9 +39,11 @@ class GameScreen {
         this.ball = new Ball(
             new Point(Configuration.ball.ballInitialPositionX,
                 Configuration.ball.ballInitialPositionY), Configuration.ball.ballRadius);
+
     }
     // draw function
     draw() {
+
         background(Configuration.screen.gameScreenBackgroundColour);
         this.paddle.draw();
         this.ball.draw();
@@ -45,6 +57,16 @@ class GameScreen {
             Configuration.screen.scoreLabel.position.y,
             Configuration.screen.scoreLabel.size.width,
             Configuration.screen.scoreLabel.size.height);
+        if (!this.isPlaying) {
+            stroke("blue");
+            fill("blue");
+            text("Press \"A\" or \"W\" to move the paddle and start the game",
+                this.width / 3,
+                this.height / 3,
+                this.width / 3,
+                this.height / 3
+            );
+        }
     };
 
     createBlocks() {
@@ -53,8 +75,8 @@ class GameScreen {
                 var newBlock = new Block(
                     new Point(Math.floor(random(0, this.width - Configuration.block.blockWidth)),
                         Math.floor(random(0, this.paddle.position.y - Configuration.block.blockHeight * 2))), new Size(Configuration.block.blockWidth,
-                            Configuration.block.blockHeight),
-                    Math.round(random(this.level,this.level*2)));
+                        Configuration.block.blockHeight),
+                    Math.round(random(this.level, this.level * 2)));
                 if (Util.checkIfBlocksOverlap(newBlock, this.blocks) == false) {
                     this.blocks.push(newBlock);
                     break;
@@ -85,8 +107,7 @@ class GameScreen {
         ) {
             if (this.ball.direction.y > 0) {
                 this.ball.bottom = this.paddle.top - 1;
-            }
-            else {
+            } else {
                 this.ball.top = this.paddle.bottom + 1;
             }
             this.ball.direction.y *= -1;
@@ -97,18 +118,23 @@ class GameScreen {
             this.ball.direction.x *= -1;
         }
 
-        // ball wall top and bottom
-        if (this.ball.top < 0 || this.ball.bottom > this.height - 1) {
+        // ball wall top
+        if (this.ball.top < 0) {
             this.ball.direction.y *= -1;
+        }
+
+        // ball drop to the bottom we restart the game
+        if (this.ball.bottom > this.height - 1) {
+            this.initGame();
         }
 
         // ball block
         for (var i = 0; i < this.blocks.length; i++) {
             var block = this.blocks[i];
-            if (this.ball.right > block.left
-                && this.ball.left < block.right
-                && this.ball.bottom > block.top
-                && this.ball.top <= block.bottom) {
+            if (this.ball.right > block.left &&
+                this.ball.left < block.right &&
+                this.ball.bottom > block.top &&
+                this.ball.top <= block.bottom) {
 
                 // get the distances of intersect
                 // from 4 sides
@@ -121,24 +147,20 @@ class GameScreen {
                 // find the real intersect sides
                 // base on the distance of the intersections
                 // if it is positive and not greater than the speed of the ball
-                
+
                 if (distanceLeft >= 0 && distanceLeft <= this.ball.xSpeed) {
                     this.ball.right = block.left - 1;
                     this.ball.direction.x *= -1;
-                }
-                else if (distanceRight >= 0 && distanceRight <= -this.ball.xSpeed) {
+                } else if (distanceRight >= 0 && distanceRight <= -this.ball.xSpeed) {
                     this.ball.left = block.right + 1;
                     this.ball.direction.x *= -1;
-                }
-                else if (distanceTop >= 0 && distanceTop <= this.ball.ySpeed) {
+                } else if (distanceTop >= 0 && distanceTop <= this.ball.ySpeed) {
                     this.ball.bottom = block.top - 1;
                     this.ball.direction.y *= -1;
-                }
-                else if (distanceBottom >= 0 && distanceBottom <= -this.ball.ySpeed) {
+                } else if (distanceBottom >= 0 && distanceBottom <= -this.ball.ySpeed) {
                     this.ball.top = block.bottom + 1;
                     this.ball.direction.y *= -1;
-                }
-                else {
+                } else {
                     print(distanceLeft, distanceRight, this.ball.direction.x, distanceTop, distanceBottom, this.ball.direction.y);
                 }
 
@@ -156,7 +178,7 @@ class GameScreen {
 
         // if all the blocks are broken, increase the level
         // and create blocks
-        if(this.blocks.length == 0){
+        if (this.blocks.length == 0) {
             this.level += 1;
             this.createBlocks();
         }

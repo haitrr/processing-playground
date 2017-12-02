@@ -60,7 +60,7 @@ class GameScreen {
         if (!this.isPlaying) {
             stroke("blue");
             fill("blue");
-            text("Press \"A\" or \"W\" to move the paddle and start the game",
+            text("Press \"A\" or \"D\" to move the paddle and start the game",
                 this.width / 3,
                 this.height / 3,
                 this.width / 3,

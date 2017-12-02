@@ -18,7 +18,7 @@ var Configuration = new function () {
 
     // paddle
     this.paddle = new function (screen) {
-        this.paddleWidth = Math.floor(screen.screenWidth / 5);
+        this.paddleWidth = Math.floor(screen.screenWidth / 10);
         this.paddleHeight = Math.floor(screen.screenHeight / 50);
         this.paddleInitialPositionX = Math.floor(screen.screenWidth / 2);
         this.paddleInitialPositionY = Math.floor(screen.screenHeight * 0.9);

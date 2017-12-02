@@ -2,8 +2,8 @@
 var Configuration = new function () {
     // screen
     this.screen = new function () {
-        this.screenWidth = 600;
-        this.screenHeight = 600;
+        this.screenWidth = window.innerWidth;
+        this.screenHeight = window.innerHeight;
         this.inititalLevel = 1;
         this.gameScreenBackgroundColour = "green";
         this.frameRate = 60;

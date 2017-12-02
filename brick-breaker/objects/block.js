@@ -8,7 +8,6 @@ class Block extends RegtangleObject{
         // color
         // random
         this.colour = [Math.floor(Math.random() * 255 + 1),Math.floor(Math.random() * 255 + 1),Math.floor(Math.random() * 255 + 1)];
-        console.log(this.colour);
         // durability
         this.durability = durability;
     }

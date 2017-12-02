@@ -7,6 +7,13 @@ function setup() {
 }
 
 function draw() {
-    game.update();
+    if (game.screen.isPlaying){
+        game.update();
+    }
+    else{
+        if (keyIsDown(65) || keyIsDown(68)) {
+            game.screen.isPlaying = true;
+        }
+    }
     game.draw();
 }

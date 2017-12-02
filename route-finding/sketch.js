@@ -16,4 +16,9 @@ class Square{
         this.x = x;
         this.y = y;
     }
+    draw() {
+        stroke("black");
+        fill(this.color);
+        rect(this.x, this.y, this, width, this.width);
+    }
 }

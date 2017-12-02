@@ -180,6 +180,7 @@ class GameScreen {
         // and create blocks
         if (this.blocks.length == 0) {
             this.level += 1;
+            this.ball.speed += Configuration.ball.initialSpeed / 2;
             this.createBlocks();
         }
     }

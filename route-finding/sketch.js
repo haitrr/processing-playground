@@ -4,6 +4,8 @@ squareWidth = 0;
 hasStart = false;
 finished = false;
 isRunning = false;
+start = null;
+goal = null;
 head = [];
 wallRate = 0.3;
 distance = 0;
@@ -41,6 +43,8 @@ function createSquares() {
 // reset program
 function reset() {
     squares = [];
+    start = null;
+    goal = null;
     hasStart = false;
     finished = false;
     isRunning = false;
@@ -83,7 +87,11 @@ function spread() {
             }
             // Found goal
             if (p.isStart) {
+                p.distance = distance;
                 finished = true;
+                // draw the path between the start and the goal
+                this.drawPath();
+                return;
             }
         }
     }
@@ -118,13 +126,33 @@ function mouseClicked() {
     if (squares[x][y].isWall) return;
     if (!hasStart) {
         squares[x][y].isStart = true;
+        start = squares[x][y];
         hasStart = true;
     } else {
         squares[x][y].isGoal = true;
+        goal = squares[x][y];
         head.push(squares[x][y]);
         isRunning = true;
     }
 
+}
+
+function drawPath() {
+    var present = start;
+    while (true) {
+        var around = getSurround(Math.floor(present.x / squareWidth), Math.floor(present.y / squareWidth));
+        for (var i = 0; i < around.length; i++) {
+            var s = squares[around[i][0]][around[i][1]];
+            if (s.distance == present.distance - 1) {
+                present = s;
+                if (present.isGoal) {
+                    return;
+                }
+                present.isPath = true;
+                break;
+            }
+        }
+    }
 }
 
 class Square {
@@ -136,6 +164,7 @@ class Square {
         this.distance = 0;
         this.x = x;
         this.y = y;
+        this.isPath = false;
     }
     draw() {
         stroke("black");
@@ -146,6 +175,8 @@ class Square {
                 fill("green");
             } else if (this.isGoal) {
                 fill("red");
+            } else if (this.isPath) {
+                fill("yellow");
             } else {
                 fill("white");
             }

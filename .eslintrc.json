@@ -1,0 +1,3 @@
+{
+    "extends": ["standard","p5js"]
+}

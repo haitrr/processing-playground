@@ -1,10 +1,30 @@
 let grid = []
-let size = 6
-let tileWidth = 100
+let score = 0
+let size = 8
 let width = 800
 let height = 640
+let tileWidth = height / (size + 1)
 let penSize = 2
 let colors = [
+  'red',
+  'orange',
+  'green',
+  'yellow',
+  'blue',
+  'violet',
+  'Chartreuse',
+  'CadetBlue',
+  'Coral',
+  'Cyan',
+  'Crimson',
+  'DarkOrchid',
+  'Khaki',
+  'SeaGreen',
+  'Thistle',
+  'Wheat',
+  'RoyalBlue',
+  'Magenta',
+  'purple',
   'red',
   'orange',
   'green',
@@ -44,12 +64,9 @@ function draw () {
   background(255)
   for (let i = 0; i < size; i++) {
     for (let j = 0; j < size; j++) {
-      noFill()
-      strokeWeight(penSize)
-      stroke(0)
       let x = i * tileWidth
       let y = j * tileWidth
-      rect(x, y, tileWidth, tileWidth)
+
       let value = grid[i][j]
       if (value != null && value !== 0) {
         let color = Math.log2(value)
@@ -57,12 +74,28 @@ function draw () {
         rect(x, y, tileWidth, tileWidth)
         textAlign(CENTER, CENTER)
         fill(0)
-        noStroke()
-        textSize(tileWidth / 2)
+        strokeWeight(penSize)
+        stroke(0)
+        textSize(tileWidth / String(value).length)
         text(value, x, y, tileWidth, tileWidth)
+      } else {
+        noFill()
+        strokeWeight(penSize)
+        stroke(0)
+        rect(x, y, tileWidth, tileWidth)
       }
     }
   }
+  textSize(tileWidth / 2)
+  fill(0)
+  textAlign(CENTER, CENTER)
+  text(
+    'Score : '.concat(score),
+    0,
+    size * tileWidth,
+    size * tileWidth,
+    tileWidth
+  )
 }
 
 // get blank tiles
@@ -144,6 +177,7 @@ function combine (array, left = true) {
   }
   while (i < array.length - 1) {
     if (array[i] !== 0 && array[i] === array[i + 1]) {
+      score += array[i]
       array[i] *= 2
       if (i !== array.length - 1) {
         let j = i + 1

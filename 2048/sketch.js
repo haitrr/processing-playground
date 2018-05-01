@@ -148,14 +148,20 @@ function keyPressed () {
   }
 }
 
+// sile a row or column
 function slide (row, left = true) {
   let s = row.reduce((a, b) => a + b)
+  // skip the 0 tiles
   let values = row.filter(value => value !== 0)
+  // combine
   values = combine(values, left)
+  // skip the 0 tiles
   values = values.filter(value => value !== 0)
+  // number of the 0 tiles
   let blanks = size - values.length
   let zeros = Array(blanks).fill(0)
   let s2 = 0
+  // just debug
   try {
     s2 = values.reduce((a, b) => a + b)
   } catch (e) {}
@@ -164,6 +170,7 @@ function slide (row, left = true) {
     print(row)
     print(values)
   }
+  // insert the zeros in the left or right
   if (left) {
     return values.concat(zeros)
   }
@@ -172,13 +179,20 @@ function slide (row, left = true) {
 
 function combine (array, left = true) {
   let i = 0
+  // combine to the left the reverse the array
   if (!left) {
     array.reverse()
   }
   while (i < array.length - 1) {
+    // two tile with the same value
     if (array[i] !== 0 && array[i] === array[i + 1]) {
+      // add score
       score += array[i]
+
+      // combine
       array[i] *= 2
+
+      // push the other element forward
       if (i !== array.length - 1) {
         let j = i + 1
         while (j < array.length - 1) {
@@ -186,21 +200,28 @@ function combine (array, left = true) {
           j += 1
         }
         array[array.length - 1] = 0
+        // combine only one pair at a time
         break
       }
+
+      // recheck
       if (i !== 0) {
         i -= 1
       }
     } else {
+      // next
       i += 1
     }
   }
+
+  // reverse back
   if (!left) {
     array.reverse()
   }
   return array
 }
 
+// add a value to a random blank tile
 function addNumber () {
   let blanks = getBlank()
   let tile = random(blanks)
@@ -210,12 +231,14 @@ function addNumber () {
   grid[tile.x][tile.y] = random([2, 4])
 }
 
+// get a column out of a array
 function getColumn (anArray, columnNumber) {
   return anArray.map(function (row) {
     return row[columnNumber]
   })
 }
 
+// set a column of an array
 function setColumn (anArray, newColumn, columnNumber) {
   for (let i = 0; i < anArray.length; i++) {
     anArray[i][columnNumber] = newColumn[i]
@@ -223,6 +246,7 @@ function setColumn (anArray, newColumn, columnNumber) {
   return anArray
 }
 
+// create the grid
 function setupGrid () {
   for (let i = 0; i < size; i++) {
     let row = []

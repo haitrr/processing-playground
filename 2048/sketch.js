@@ -1,6 +1,6 @@
 let grid = []
 let score = 0
-let size = 8
+let size = 4
 let width = 800
 let height = 640
 let tileWidth = height / (size + 1)

@@ -10,6 +10,8 @@ let penSize = size / 3
 let CLOSED = 0
 let FLAGGED = -1
 let OPENED = 1
+let BOMB = -1
+let gameOver = false
 
 function onContextMenu (e) {
   e.preventDefault()
@@ -29,6 +31,9 @@ function setupStatus () {
 
 // eslint-disable-next-line
 function mousePressed() {
+  if (gameOver) {
+    return
+  }
   if (mouseButton === RIGHT) {
     let row = int(mouseX / size)
     let column = int(mouseY / size)
@@ -53,6 +58,10 @@ function open (row, column) {
   if (row < rowCount && column < columnCount) {
     if (status[row][column] === CLOSED) {
       status[row][column] = OPENED
+      if (board[row][column] === BOMB) {
+        gameOver = true
+        return
+      }
       if (board[row][column] === 0) {
         let around = getAround(row, column)
         around.forEach(e => open(e.r, e.c))
@@ -63,6 +72,9 @@ function open (row, column) {
 
 // eslint-disable-next-line
 function mouseClicked() {
+  if (gameOver) {
+    return
+  }
   let row = int(mouseX / size)
   let column = int(mouseY / size)
   if (row < rowCount && column < columnCount) {

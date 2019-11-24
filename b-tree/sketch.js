@@ -1,5 +1,9 @@
 /* eslint-disable no-undef */
 let tree
+let deleteInput
+let deleteButton
+let insertInput
+let insertButton
 // eslint-disable-next-line no-unused-vars
 function setup () {
   tree = new BTree(3)
@@ -11,11 +15,35 @@ function setup () {
   createCanvas(displayWidth, displayHeight)
   background(0)
   textAlign(CENTER, CENTER)
-  let input = createInput()
-  input.position(20, 20)
-  let button = createButton('Insert')
-  button.position(100, 20)
-  button.mousePressed(insertButtonPressed)
+  insertInput = createInput()
+  insertInput.position(20, 20)
+  insertInput.size(100)
+  insertButton = createButton('Insert')
+  insertButton.position(140, 20)
+  insertButton.size(50)
+  insertButton.mousePressed(insertButtonPressed)
+  createDeleteInput()
+  createDeleteButton()
+}
+
+function createDeleteInput () {
+  deleteInput = createInput()
+  deleteInput.position(200, 20)
+  deleteInput.size(100)
+}
+
+function createDeleteButton () {
+  deleteButton = createButton('Delete')
+  deleteButton.size(50)
+  deleteButton.position(320, 20)
+  deleteButton.mousePressed(deleteButtonPressed)
+}
+
+function deleteButtonPressed () {
+  const value = parseInt(deleteInput.value())
+  if (!Number.isNaN(value)) {
+    tree.delete(value)
+  }
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -25,8 +53,8 @@ function draw () {
 }
 
 const insertButtonPressed = () => {
-  const value = parseInt(input.value())
-  if (value !== null) {
+  const value = parseInt(insertInput.value())
+  if (!Number.isNaN(value)) {
     var rs = tree.insert(value)
     if (rs) {
       tree.divide(rs.left, rs.right, rs.middle)
@@ -136,6 +164,10 @@ class BTree {
         }
       }
     }
+  }
+
+  delete (value) {
+    window.alert('Work in progress')
   }
 
   draw (x, y, size = 10, split = 10) {

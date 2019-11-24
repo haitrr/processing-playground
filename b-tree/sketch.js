@@ -182,7 +182,7 @@ class BTree {
     let currentX = x + size * this.values.length + split
     this.childs.map((child, index) => {
       stroke(255)
-      line(x, y, currentX, y + size + split)
+      line(x + size * index, y + size, currentX, y + size + split)
       currentX = child.draw(currentX, y + size + split, size, split)
     })
 

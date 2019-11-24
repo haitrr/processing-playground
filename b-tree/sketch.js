@@ -7,12 +7,12 @@ let insertButton
 // eslint-disable-next-line no-unused-vars
 function setup () {
   tree = new BTree(3)
-  let insertTo = 10
+  let insertTo = 30
   for (let i = 0; i < insertTo; i++) {
     tree.insert(Math.floor(Math.random() * 100))
   }
 
-  createCanvas(displayWidth, displayHeight)
+  createCanvas(windowWidth, windowHeight)
   background(0)
   textAlign(CENTER, CENTER)
   insertInput = createInput()
@@ -49,6 +49,8 @@ function deleteButtonPressed () {
 // eslint-disable-next-line no-unused-vars
 function draw () {
   background(0)
+  stroke(255)
+  text('B Tree visualizer', Math.floor(windowWidth / 2), 10)
   tree.draw(50, 50, 20)
 }
 
@@ -80,7 +82,7 @@ class BTree {
         2
       )
     )
-  };
+  }
 
   divide (left, right, middle) {
     let i = 0

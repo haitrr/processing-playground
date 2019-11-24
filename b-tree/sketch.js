@@ -169,7 +169,7 @@ class BTree {
     window.alert('Work in progress');
   }
 
-  draw(x, y, size = 10, split = 30) {
+  draw(x, y, size = 10, hsplit = 10, vsplit = 30) {
     this.values.map((value, index) => {
       const valX = x + index * size;
       stroke(255);
@@ -178,11 +178,11 @@ class BTree {
       text(value, valX + size / 2, y + size / 2);
     });
 
-    let currentX = x + size * this.values.length + split;
+    let currentX = x + size * this.values.length + hsplit;
     this.childs.map((child, index) => {
       stroke(255);
-      line(x + size * index, y + size, currentX, y + size + split);
-      currentX = child.draw(currentX, y + size + split, size, split);
+      line(x + size * index, y + size, currentX, y + size + vsplit);
+      currentX = child.draw(currentX, y + size + vsplit, size, hsplit, vsplit);
     });
 
     return currentX;

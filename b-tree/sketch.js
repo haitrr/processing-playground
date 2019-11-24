@@ -1,14 +1,15 @@
 let tree;
 function setup() {
   tree = new BTree(3);
-  for(let i=0; i<15;i++) {
-    tree.insert(i)
-    console.log(i)
-//     console.log(JSON.stringify(tree, function(key, val) {
-//     if (key !== "parent")
-//         return val;
-// }, 2))
-    console.log("---------------")
+  let insertTo = 20;
+  for (let i = 0; i < insertTo; i++) {
+    tree.insert(i);
+    console.log(i);
+    //     console.log(JSON.stringify(tree, function(key, val) {
+    //     if (key !== "parent")
+    //         return val;
+    // }, 2))
+    console.log('---------------');
   }
 
   createCanvas(720, 480)
@@ -35,6 +36,7 @@ const insertButtonPressed = () => {
     if(rs) {
       tree.divide(rs.left, rs.right, rs.middle);
     }
+    tree.log();
   }
 };
 
@@ -109,7 +111,7 @@ class BTree {
       var result = this.childs[i].insert(value);
     } else {
       this.values.push(value);
-      this.values.sort();
+      this.values.sort(function(a,b) { return a - b; } );
 
       if (this.values.length === this.degree) {
         let left = new BTree(this.degree, this);
@@ -145,7 +147,7 @@ class BTree {
       text(value, valX + size / 2, y + size / 2);
     });
 
-    let currentX = x + size + split
+    let currentX = x + size* this.values.length + split
     this.childs.map((child, index) => {
       stroke(255)
       line(x,y,currentX, y+size+split)

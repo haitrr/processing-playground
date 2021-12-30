@@ -1,5 +1,6 @@
 const size = 600;
 const cellSize = size / 9;
+let selectedCell = [0, 0];
 function setup() {
   // put setup code here
   createCanvas(size, size);
@@ -32,6 +33,18 @@ function draw() {
   line(0, size, size, size);
   line(size, 0, size, size);
   drawSudoku();
+  drawSelectedCell();
+}
+
+function mouseClicked() {
+  let x = Math.floor(mouseX / cellSize);
+  let y = Math.floor(mouseY / cellSize);
+  selectedCell = [x, y];
+}
+
+function drawSelectedCell() {
+  fill(0, 0, 255, 100);
+  rect(selectedCell[0] * cellSize, selectedCell[1] * cellSize, cellSize, cellSize);
 }
 
 function drawSudoku() {
@@ -51,15 +64,9 @@ function drawSudoku() {
           let note = notes[i][j][k];
           let note_y = Math.floor((note-1)/3) * sect + sect;
           let note_x = (note-1)%3 * sect + sect;
-          // console.log(note, note_x, note_y)
           text(notes[i][j][k], i * cellSize + note_x, j * cellSize + note_y);
         }
       }
     }
   }
-}
-
-function mouseClicked() {
-  ellipse(mouseX, mouseY, 5, 5);
-  return false;
 }

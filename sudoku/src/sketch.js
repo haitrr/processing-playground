@@ -73,6 +73,14 @@ function keyPressed() {
       selectedCell[1] = 0;
     }
   }
+
+  if(keyCode > 48 && keyCode < 58) {
+    setSelectCellValue(keyCode - 48);
+  }
+}
+
+function setSelectCellValue(value) {
+  sudoku[selectedCell[0]][selectedCell[1]] = value;
 }
 
 function drawSudoku() {
@@ -81,7 +89,7 @@ function drawSudoku() {
     for(let j = 0; j < 9; j++) {
       if(sudoku[i][j] != 0) {
         fill(0);
-        textSize(cellSize);
+        textSize(cellSize/2);
         text(sudoku[i][j], i * cellSize + cellSize / 2, j * cellSize + cellSize / 2);
       }
       else {

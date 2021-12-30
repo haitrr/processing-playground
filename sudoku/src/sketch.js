@@ -46,7 +46,7 @@ function drawSudoku() {
       else {
         fill(0);
         let sect = cellSize/4;
-        textSize(cellSize/6);
+        textSize(cellSize/5);
         for(let k = 0; k < notes[i][j].length; k++) {
           let note = notes[i][j][k];
           let note_y = Math.floor((note-1)/3) * sect + sect;

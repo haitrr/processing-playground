@@ -47,6 +47,34 @@ function drawSelectedCell() {
   rect(selectedCell[0] * cellSize, selectedCell[1] * cellSize, cellSize, cellSize);
 }
 
+function keyPressed() {
+  if(keyCode === LEFT_ARROW) {
+    selectedCell[0]--;
+    if(selectedCell[0] < 0) {
+      selectedCell[0] = 8;
+    }
+  }
+
+  if(keyCode === RIGHT_ARROW) {
+    selectedCell[0]++;
+    if(selectedCell[0] > 8) {
+      selectedCell[0] = 0;
+    }
+  }
+  if(keyCode === UP_ARROW) {
+    selectedCell[1]--;
+    if(selectedCell[1] < 0) {
+      selectedCell[1] = 8;
+    }
+  }
+  if(keyCode === DOWN_ARROW) {
+    selectedCell[1]++;
+    if(selectedCell[1] > 8) {
+      selectedCell[1] = 0;
+    }
+  }
+}
+
 function drawSudoku() {
   textAlign(CENTER, CENTER);
   for(let i = 0; i < 9; i++) {
